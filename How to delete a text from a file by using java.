@@ -1,0 +1,87 @@
+package deletetextfromfile;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Muhammad Arsalan
+ */
+public class DeleteTextFromFile {
+
+ 
+    /**
+     * @param args the command line arguments
+     */
+    static Scanner x;
+
+    public static void main(String[] args) throws IOException {
+
+                deleteText();
+    }
+
+     public static void deleteText() throws IOException{
+         
+          Scanner input = new Scanner(System.in);
+          String memberName;
+
+         System.out.print("\nEnter Member Existing File Name IF File name is not Match with file programme will exit :");
+        memberName = input.nextLine();
+        String sFileName = memberName +".txt";
+        File sFile = new File(sFileName);
+        /* in file a text line will not be deleted in a same file
+        By this method we will save text to new file and gave it to a same name by renameTo method and delete the old file.*/ 
+        
+        File newFile = new File("temp.txt");
+                if(sFile.exists()){
+                        
+                        System.out.print("\nEnter Book Name: ");
+                        String name=input.nextLine();
+                            try {
+                                Scanner in = new Scanner(sFile);
+                                java.io.FileWriter fr = new java.io.FileWriter(newFile, true);
+                                BufferedWriter br = new BufferedWriter(fr);
+                                PrintWriter pr = new PrintWriter(br);
+                                int count=0,cc=0;
+                                while(in.hasNext())
+                                {
+                                    cc=cc+1;
+                                    String line=in.nextLine();
+                                    if(!line.contains(name)){  
+                                        pr.println(line); 
+                                    }
+                                    else{
+                                            count=count+1;
+                                    }
+                                }
+                                  in.close();
+                                  pr.close();
+                                  br.close();
+                                  fr.close(); 
+                                  // to delete old file.
+                                sFile.delete();
+                                // to rename the new file by same old file.
+                                File reName = new File (sFileName);
+                                newFile.renameTo(reName);
+                                  
+                                
+                                if(count>cc-1){
+                                    System.out.println("Book is not Found in File");
+                                }
+                            } 
+                            
+                            catch (FileNotFoundException e) {
+                               
+                         }
+                    
+                }
+                                
+         
+
+     }
+}
+     
