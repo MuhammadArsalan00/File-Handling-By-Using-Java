@@ -1,0 +1,47 @@
+package searchfromfile;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Muhammad Arsalan
+ */
+public class SearchFromFile {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       	File file = new File("C:\\Users\\Muhammad Arsalan\\Documents\\NetBeansProjects\\SearchFromFile\\text.txt");
+		Scanner in = null;
+		Scanner input = new Scanner(System.in);
+		System.out.println();
+		System.out.print("Enter Name: ");
+		String name=input.nextLine();
+        try {
+            in = new Scanner(file);
+            int count=0,cc=0;
+            while(in.hasNext())
+            {
+            	cc=cc+1;
+                String line=in.nextLine();
+                if(line.contains(name)){
+                	System.out.println();
+                    System.out.println(line);
+                    break;
+                }
+                else{
+                	count=count+1;
+                }
+            }
+            if(count>cc-1){
+            	System.out.println("File not Found");
+            }
+        } catch (FileNotFoundException e) {
+
+        }
+	}
+    }
+    
