@@ -1,0 +1,42 @@
+package addtextinfile;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Muhammad Arsalan
+ */
+public class AddTextInFile {
+
+    /**
+     * @param args the command line arguments
+     * @throws java.io.IOException
+     */
+    public static void main(String[] args)throws IOException{
+        Scanner input = new Scanner(System.in);
+            String bookName;
+
+        try {
+        String sFileName ="C:\\Users\\Muhammad Arsalan\\Documents\\NetBeansProjects\\AddTextInFile\\text.txt";
+        File sFile = new File(sFileName);
+        FileWriter fr = new FileWriter(sFile, true);
+        BufferedWriter br = new BufferedWriter(fr);
+        PrintWriter pr = new PrintWriter(br);
+        System.out.print("\nEnter Book Name :");
+        bookName = input.nextLine();
+        pr.println(bookName);
+        pr.close();
+        br.close();
+        fr.close();
+
+		} 
+        catch (FileNotFoundException e) {
+		}
+    }
+}
